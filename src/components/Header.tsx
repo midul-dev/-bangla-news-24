@@ -1,7 +1,6 @@
 import Image from "next/image";
 import Logo from "@/assets/logo.webp";
 import Navbar from "./Navbar";
-import Marquee from "./Marquee";
 
 const Header = () => {
   const date = new Date().toLocaleDateString("bn-BD", { dateStyle: "full" });

@@ -4,7 +4,7 @@ import Image from "next/image";
 const MainNews = ({ news }: { news: IMainNews[] }) => {
   const [firstNews, ...otherNews] = news;
   return (
-    <div className="flex gap-4 mt-4">
+    <div className="flex gap-4 mt-6 mb-8">
       <div className="card bg-base-100 border-gray-300 border w-96 shadow-sm">
         <figure>
           <Image
@@ -25,7 +25,7 @@ const MainNews = ({ news }: { news: IMainNews[] }) => {
         {otherNews.slice(0, 4).map((other) => (
           <div
             className=" bg-base-100 border-t border-gray-300 overflow-hidden px-5 py-3 "
-            p-5
+            
             key={other.id}
           >
             <p className="text-red-600 font-semibold"> {other.category} </p>
