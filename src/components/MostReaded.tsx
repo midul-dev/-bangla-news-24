@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 const MostReaded = async () => {
   const res = await fetch("https://news-api-v2.vercel.app/api/news/most-read");
   const data = await res.json();
@@ -16,7 +18,9 @@ const MostReaded = async () => {
 </h1>
       <ol className="list-decimal list-inside list">
         {mostRead.map((readed: IMostRead) => (
-          <li className="pb-2 font-bold" key={readed.id}>{readed.title}</li>
+          <li className="pb-2 font-bold" key={readed.id}>
+            <Link className="hover:underline" href={`/news/${readed.id}`}>{readed.title}</Link>
+          </li>
         ))}
       </ol>
       </div>

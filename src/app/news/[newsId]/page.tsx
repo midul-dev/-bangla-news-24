@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import { notFound } from 'next/navigation';
 import React from 'react';
 
 
@@ -53,6 +54,9 @@ const NewsDetailsPage = async ({ params }: { params: Promise<{ newsId: string }>
             cache: "no-store",
         }
     );
+    if(!res.ok){
+        return notFound()
+    }
     const data = await res.json()
 
 
