@@ -13,8 +13,8 @@ interface IArticles {
 
 const NewsCard = ({ news }: { news: IArticles }) => {
   return (
-    <div className="card bg-base-100 border-gray-300 border shadow-sm">
-      <figure>
+    <div className="card bg-base-100 border-gray-300 border shadow-sm  h-full">
+      <figure className="h-58">
         <Image
           src={news.imageUrl}
           alt={news.imageAlt}
@@ -25,7 +25,7 @@ const NewsCard = ({ news }: { news: IArticles }) => {
       <div className="card-body">
         <p className="text-red-700 font-bold">{news.category}</p>
         <h2 className="card-title font-bold">{news.title}</h2>
-        <p className="line-clamp-2">{news.description}</p>
+        <p className=" text-slate-600">{news.description?.slice(0, 100)}...</p>
         <p className="text-xs mt-1 text-neutral-400">
           {new Date(news.lastPublished).toLocaleDateString("bn-BD", {
             timeZone: "Asia/Dhaka",
