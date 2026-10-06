@@ -25,7 +25,7 @@ const NewsCard = ({ news }: { news: IArticles }) => {
       <div className="card-body">
         <p className="text-red-700 font-bold">{news.category}</p>
         <h2 className="card-title font-bold">{news.title}</h2>
-        <p>{news.description}</p>
+        <p className="line-clamp-2">{news.description}</p>
         <p className="text-xs mt-1 text-neutral-400">
           {new Date(news.lastPublished).toLocaleDateString("bn-BD", {
             timeZone: "Asia/Dhaka",
