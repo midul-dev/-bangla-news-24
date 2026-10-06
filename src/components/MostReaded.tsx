@@ -10,7 +10,7 @@ const MostReaded = async () => {
   }
 
   return (
-    <div className="card border bg-base-100 border-gray-300 border shadow-sm mt-6">
+    <div className="card border bg-base-100 border-gray-300 shadow-sm mt-6">
         <div className="py-4 px-5 ">
             <h1 className="text-xl font-bold text-red-700 pb-3">সর্বাধিক পঠিত
 </h1>

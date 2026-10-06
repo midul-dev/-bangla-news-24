@@ -10,7 +10,7 @@ const Navbar = async () => {
   return (
     <div className="flex gap-4 mt-4">
         <Link href={"/"}>হোম</Link>      {navData.map((nav: INav, i: number) => (
-        <div key={i}>{nav.title} </div>
+        <Link  href={`/category/${nav.slug}`} key={i}>{nav.title} </Link>
       ))}
     </div>
   );
