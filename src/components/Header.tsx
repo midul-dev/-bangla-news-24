@@ -16,8 +16,8 @@ const Header = () => {
         </div>
       </div>
       <div className="absolute top-3 right-2 flex items-center gap-2">
-        <button className="btn btn-ghost hover:btn-ghost">সাইন ইন</button>
-        <button className="btn btn-error bg-red-600 text-white">সাইন আপ</button>
+        <Link href={"/sign-in"}><button className="btn btn-ghost hover:btn-ghost">সাইন ইন</button></Link>
+        <Link href={"/sign-up"}><button className="btn btn-error bg-red-600 text-white">সাইন আপ</button></Link>
       </div>
       <Navbar />
       
