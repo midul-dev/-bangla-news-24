@@ -39,7 +39,7 @@ export default function SignUpPage() {
     if (error) {
       setError(error.message as string);
     } 
-    toast.success('Login Successfully!')
+    toast.success('Successfully Create Account!')
   };
 
   return (
@@ -78,7 +78,7 @@ export default function SignUpPage() {
             <input
               name="name"
               type="text"
-              placeholder="John Doe"
+              placeholder="your name"
               autoComplete="name"
               minLength={3}
               required
@@ -96,7 +96,7 @@ export default function SignUpPage() {
             <input
               name="email"
               type="email"
-              placeholder="you@example.com"
+              placeholder="you@mail.com"
               autoComplete="email"
               required
               className="w-full rounded-lg border border-gray-200 px-4 py-3 text-sm outline-none transition placeholder:text-gray-400 focus:border-red-500 focus:ring-2 focus:ring-red-100"
@@ -205,7 +205,7 @@ export default function SignUpPage() {
         <p className="mt-6 text-center text-sm text-gray-500">
           Already have an account?{" "}
           <Link
-            href="/login"
+            href="/sign-in"
             className="font-semibold text-red-600 hover:text-red-700"
           >
             Sign in
