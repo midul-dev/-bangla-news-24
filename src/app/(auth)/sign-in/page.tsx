@@ -13,8 +13,27 @@ import { useRouter } from "next/navigation";
 export default function SignUpPage() {
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   
   const router = useRouter();
+  
+  const handleSocialSignIn = async (provider: "google" | "github") => {
+    try {
+      const { data, error } = await signIn.social({
+        provider,
+        callbackURL: "/",
+    });
+      if (error) {
+        setError(error.message as string);
+      }
+      router.push("/");
+    } catch (error) {
+      console.error("Social sign-in error:", error);
+      setError("An error occurred during social sign-in.");
+    }
+    setIsLoading(true);
+  };
+
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -139,9 +158,9 @@ Sign In          </button>
         <div className="grid grid-cols-2 gap-3 pt-5">
           <button
             type="button"
-            onClick={() => {
-              // Connect Google OAuth here.
-            }}
+            onClick={() => 
+              handleSocialSignIn("google")
+            }
             className="flex items-center justify-center gap-2 rounded-lg border border-gray-200 px-4 py-3 text-sm font-medium text-gray-700 transition hover:bg-gray-50"
           >
             <svg viewBox="0 0 48 48" className="h-5 w-5" aria-hidden="true">
@@ -168,7 +187,7 @@ Sign In          </button>
           <button
             type="button"
             onClick={() => {
-              // Connect GitHub OAuth here.
+              handleSocialSignIn("github");
             }}
             className="flex items-center justify-center gap-2 rounded-lg border border-gray-200 px-4 py-3 text-sm font-medium text-gray-700 transition hover:bg-gray-50"
           >

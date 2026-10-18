@@ -4,7 +4,7 @@ import logo from "@/assets/logo.webp";
 import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { signUp } from "@/lib/auth-client";
+import { signIn, signUp } from "@/lib/auth-client";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 
@@ -15,6 +15,22 @@ export default function SignUpPage() {
   const [error, setError] = useState("");
   
   const router = useRouter();
+
+  const handleSocialSignIn = async (provider: "google" | "github") => {
+      try {
+        const { data, error } = await signIn.social({
+          provider,
+          callbackURL: "/",
+        });
+        if (error) {
+          setError(error.message as string);
+        }
+        router.push("/");
+      } catch (error) {
+        console.error("Social sign-in error:", error);
+        setError("An error occurred during social sign-in.");
+      }
+    };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -37,7 +53,7 @@ export default function SignUpPage() {
     router.push("/");
 
     if (error) {
-      setError(error.message as string);
+      setError(error.message as string); 
     } 
     toast.success('Successfully Create Account!')
   };
@@ -158,8 +174,7 @@ export default function SignUpPage() {
           <button
             type="button"
             onClick={() => {
-              // Connect Google OAuth here.
-            }}
+handleSocialSignIn("google");            }}
             className="flex items-center justify-center gap-2 rounded-lg border border-gray-200 px-4 py-3 text-sm font-medium text-gray-700 transition hover:bg-gray-50"
           >
             <svg viewBox="0 0 48 48" className="h-5 w-5" aria-hidden="true">
@@ -186,8 +201,7 @@ export default function SignUpPage() {
           <button
             type="button"
             onClick={() => {
-              // Connect GitHub OAuth here.
-            }}
+handleSocialSignIn("github");            }}
             className="flex items-center justify-center gap-2 rounded-lg border border-gray-200 px-4 py-3 text-sm font-medium text-gray-700 transition hover:bg-gray-50"
           >
             <svg

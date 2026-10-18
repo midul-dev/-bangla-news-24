@@ -16,7 +16,7 @@ const Auth = () => {
   return (
     <div>
       {isPending ? (
-        <></>
+        <div className="w-24 h-10 animate-pulse rounded-lg bg-gray-200" />
       ) : session ? (
         <div>
           <button onClick={handleSignOut} className="btn">
