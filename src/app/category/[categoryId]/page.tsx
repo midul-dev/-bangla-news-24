@@ -9,7 +9,7 @@ const CategoryPage = async ({
   const { categoryId } = await params;
 
   const res = await fetch(
-    `https://news-api-v2.vercel.app/api/category/${categoryId}`
+    `${process.env.NEWS_CATEGORY_API}${categoryId}`
   );
 
   const data = await res.json();

@@ -3,9 +3,7 @@ import MostReaded from "@/components/MostReaded";
 import NewsCard from "@/components/NewsCard";
 
 const HomePage = async () => {
-  const res = await fetch(
-    "https://news-api-v2.vercel.app/api/news/sections"
-  );
+  const res = await fetch(process.env.NEWS_API_KEY as string);
 
   const data = await res.json();
 

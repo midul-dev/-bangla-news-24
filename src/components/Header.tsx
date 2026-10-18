@@ -2,6 +2,7 @@ import Image from "next/image";
 import Logo from "@/assets/logo.webp";
 import Navbar from "./Navbar";
 import Link from "next/link";
+import Auth from "./Auth";
 
 const Header = () => {
   const date = new Date().toLocaleDateString("bn-BD", { dateStyle: "full" });
@@ -16,8 +17,7 @@ const Header = () => {
         </div>
       </div>
       <div className="absolute top-3 right-2 flex items-center gap-2">
-        <Link href={"/sign-in"}><button className="btn btn-ghost hover:btn-ghost">সাইন ইন</button></Link>
-        <Link href={"/sign-up"}><button className="btn btn-error bg-red-600 text-white">সাইন আপ</button></Link>
+        <Auth />
       </div>
       <Navbar />
       

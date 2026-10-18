@@ -1,5 +1,6 @@
 import Link from "next/link";
-import FastMarquee from "react-fast-marquee";
+import Marquee from "react-fast-marquee";
+
 
 interface Headline {
   id: string | number;
@@ -10,10 +11,8 @@ interface NewsApiResponse {
   data: Headline[];
 }
 
-const Marquee = async () => {
-  const res: Response = await fetch(
-    "https://news-api-v2.vercel.app/api/news?limit=10"
-  );
+const Marquees = async () => {
+  const res: Response = await fetch(process.env.MARQUEE_API as string);
 
   const data: NewsApiResponse = await res.json();
   const headlines: Headline[] = data.data;
@@ -42,7 +41,7 @@ const Marquee = async () => {
 
         {/* Marquee */}
         <div className="flex-1 min-w-0">
-          <FastMarquee
+          <Marquee
             speed={70}
             pauseOnHover={true}
             gradient={false}
@@ -74,11 +73,11 @@ const Marquee = async () => {
                 </div>
               ))}
             </div>
-          </FastMarquee>
+          </Marquee>
         </div>
       </div>
     </div>
   );
 };
 
-export default Marquee;
+export default Marquees;

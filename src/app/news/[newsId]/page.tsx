@@ -49,7 +49,7 @@ interface IArticle {
 const NewsDetailsPage = async ({ params }: { params: Promise<{ newsId: string }> }) => {
     const { newsId } = await params
     const res = await fetch(
-        `https://news-api-v2.vercel.app/api/article/${newsId}`,
+        `${process.env.NEWS_ARTICLE_API}${newsId}`,
         {
             cache: "no-store",
         }
