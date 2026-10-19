@@ -73,17 +73,12 @@ export default function SignUpPage() {
             </span>
           </Link>
 
-          <h1 className="mt-6 text-3xl font-bold text-gray-900">
-            Login to your account
+          <h1 className="mt-6 text-xl font-bold text-gray-900">
+Welcome Back!
           </h1>
         </div>
 
-        {/* Divider */}
-        <div className="my-6 flex items-center gap-4">
-          <div className="h-px flex-1 bg-gray-200" />
-          <span className="text-xs text-gray-400">OR</span>
-          <div className="h-px flex-1 bg-gray-200" />
-        </div>
+        
 
         {/* Signin form */}
         <form onSubmit={handleSubmit} className="space-y-5">
@@ -93,7 +88,7 @@ export default function SignUpPage() {
               htmlFor="email"
               className="mb-2 block text-sm font-medium text-gray-700"
             >
-              Email address
+              Email
             </label>
             <input
               name="email"
@@ -154,8 +149,15 @@ export default function SignUpPage() {
 Sign In          </button>
         </form>
 
+        {/* Divider */}
+        <div className="my-6 flex items-center gap-4">
+          <div className="h-px flex-1 bg-gray-200" />
+          <span className="text-xs text-gray-400">OR</span>
+          <div className="h-px flex-1 bg-gray-200" />
+        </div>
+
         {/* Social signup */}
-        <div className="grid grid-cols-2 gap-3 pt-5">
+        <div className="grid grid-cols-2 gap-3 ">
           <button
             type="button"
             onClick={() => 

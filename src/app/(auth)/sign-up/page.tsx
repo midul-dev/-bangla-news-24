@@ -8,29 +8,27 @@ import { signIn, signUp } from "@/lib/auth-client";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 
-
-
 export default function SignUpPage() {
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
-  
+
   const router = useRouter();
 
   const handleSocialSignIn = async (provider: "google" | "github") => {
-      try {
-        const { data, error } = await signIn.social({
-          provider,
-          callbackURL: "/",
-        });
-        if (error) {
-          setError(error.message as string);
-        }
-        router.push("/");
-      } catch (error) {
-        console.error("Social sign-in error:", error);
-        setError("An error occurred during social sign-in.");
+    try {
+      const { data, error } = await signIn.social({
+        provider,
+        callbackURL: "/",
+      });
+      if (error) {
+        setError(error.message as string);
       }
-    };
+      router.push("/");
+    } catch (error) {
+      console.error("Social sign-in error:", error);
+      setError("An error occurred during social sign-in.");
+    }
+  };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -53,9 +51,9 @@ export default function SignUpPage() {
     router.push("/");
 
     if (error) {
-      setError(error.message as string); 
-    } 
-    toast.success('Successfully Create Account!')
+      setError(error.message as string);
+    }
+    toast.success("Successfully Create Account!");
   };
 
   return (
@@ -70,16 +68,9 @@ export default function SignUpPage() {
             </span>
           </Link>
 
-          <h1 className="mt-6 text-3xl font-bold text-gray-900">
+          <h1 className="mt-6 text-xl font-bold text-gray-900">
             Create an account
           </h1>
-        </div>
-
-        {/* Divider */}
-        <div className="my-6 flex items-center gap-4">
-          <div className="h-px flex-1 bg-gray-200" />
-          <span className="text-xs text-gray-400">OR</span>
-          <div className="h-px flex-1 bg-gray-200" />
         </div>
 
         {/* Signup form */}
@@ -89,7 +80,7 @@ export default function SignUpPage() {
               htmlFor="name"
               className="mb-2 block text-sm font-medium text-gray-700"
             >
-              Full name
+              Name
             </label>
             <input
               name="name"
@@ -107,7 +98,7 @@ export default function SignUpPage() {
               htmlFor="email"
               className="mb-2 block text-sm font-medium text-gray-700"
             >
-              Email address
+              Email
             </label>
             <input
               name="email"
@@ -169,12 +160,20 @@ export default function SignUpPage() {
           </button>
         </form>
 
+        {/* Divider */}
+        <div className="my-6 flex items-center gap-4">
+          <div className="h-px flex-1 bg-gray-200" />
+          <span className="text-xs text-gray-400">OR</span>
+          <div className="h-px flex-1 bg-gray-200" />
+        </div>
+
         {/* Social signup */}
-        <div className="grid grid-cols-2 gap-3 pt-5">
+        <div className="grid grid-cols-2 gap-3">
           <button
             type="button"
             onClick={() => {
-handleSocialSignIn("google");            }}
+              handleSocialSignIn("google");
+            }}
             className="flex items-center justify-center gap-2 rounded-lg border border-gray-200 px-4 py-3 text-sm font-medium text-gray-700 transition hover:bg-gray-50"
           >
             <svg viewBox="0 0 48 48" className="h-5 w-5" aria-hidden="true">
@@ -201,7 +200,8 @@ handleSocialSignIn("google");            }}
           <button
             type="button"
             onClick={() => {
-handleSocialSignIn("github");            }}
+              handleSocialSignIn("github");
+            }}
             className="flex items-center justify-center gap-2 rounded-lg border border-gray-200 px-4 py-3 text-sm font-medium text-gray-700 transition hover:bg-gray-50"
           >
             <svg
