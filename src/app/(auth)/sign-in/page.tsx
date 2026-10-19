@@ -14,6 +14,7 @@ export default function SignUpPage() {
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [socialLoading, setSocialLoading] = useState<'google' | 'github' | null>(null);
   
   const router = useRouter();
   
@@ -22,7 +23,8 @@ export default function SignUpPage() {
       const { data, error } = await signIn.social({
         provider,
         callbackURL: "/",
-    });
+      });
+      setSocialLoading(provider);
       if (error) {
         setError(error.message as string);
       }
@@ -31,13 +33,13 @@ export default function SignUpPage() {
       console.error("Social sign-in error:", error);
       setError("An error occurred during social sign-in.");
     }
-    setIsLoading(true);
   };
 
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setError("");
+    setIsLoading(true);
 
     const formData = new FormData(e.currentTarget);
     const user = Object.fromEntries(formData.entries()) as {
@@ -59,6 +61,7 @@ export default function SignUpPage() {
       setError(error.message as string);
     } 
     toast.success('Sign In Successfully!')
+    setIsLoading(false);
   };
 
   return (
@@ -142,11 +145,9 @@ Welcome Back!
             </p>
           )}
 
-          <button
-            type="submit"
-            className="w-full rounded-lg bg-red-600 px-4 py-3 text-sm font-semibold text-white transition hover:bg-red-700 focus:outline-none focus:ring-4 focus:ring-red-100"
-          >
-Sign In          </button>
+          <button type="submit" className="w-full rounded-lg bg-red-600 px-4 py-3 text-sm font-semibold text-white transition hover:bg-red-700 focus:outline-none focus:ring-4 focus:ring-red-100">
+            {isLoading ? "Signing in..." : "Sign In"}
+          </button>
         </form>
 
         {/* Divider */}
@@ -183,7 +184,8 @@ Sign In          </button>
                 d="M24 48c6.5 0 11.9-2.1 15.9-5.8l-7.7-6c-2.2 1.4-4.9 2.3-8.2 2.3-6.3 0-11.6-4.2-13.5-9.9l-8 6.2C6.5 42.6 14.6 48 24 48Z"
               />
             </svg>
-            Google
+            {socialLoading === 'google' ? "Google..." : "Sign in with Google"}
+            
           </button>
 
           <button
@@ -201,7 +203,7 @@ Sign In          </button>
             >
               <path d="M12 .8a11.2 11.2 0 0 0-3.54 21.83c.56.1.77-.24.77-.54v-2.1c-3.13.68-3.79-1.33-3.79-1.33-.51-1.3-1.25-1.65-1.25-1.65-1.02-.7.08-.69.08-.69 1.13.08 1.72 1.16 1.72 1.16 1 .1.78 2.1 3.27 1.59.1-.73.39-1.23.7-1.52-2.5-.29-5.13-1.25-5.13-5.56 0-1.23.44-2.23 1.16-3.02-.12-.29-.5-1.43.11-2.98 0 0 .95-.3 3.08 1.15a10.7 10.7 0 0 1 5.6 0c2.14-1.45 3.08-1.15 3.08-1.15.62 1.55.23 2.69.12 2.98.72.79 1.15 1.79 1.15 3.02 0 4.32-2.63 5.27-5.14 5.55.4.35.75 1.03.75 2.08v3.07c0 .3.2.65.77.54A11.2 11.2 0 0 0 12 .8Z" />
             </svg>
-            GitHub
+            {socialLoading === 'github' ? "GitHub..." : "Sign in with GitHub"}
           </button>
         </div>
 

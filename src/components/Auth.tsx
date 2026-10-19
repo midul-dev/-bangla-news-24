@@ -1,13 +1,16 @@
 "use client";
 import { signOut, useSession } from "@/lib/auth-client";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import React from "react";
 import toast from "react-hot-toast";
 
 const Auth = () => {
+  const router = useRouter();
   const handleSignOut = async () => {
     await signOut();
-    toast.error("Logout Successfully!");
+    toast.success("Logout Successfully!");
+router.push("/sign-in");
   };
 
   const { data: session, isPending } = useSession();
