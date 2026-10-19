@@ -21,16 +21,13 @@ const Header = () => {
               height={40}
               width={40}
               alt="Bangla News 24"
-              className="h-8 w-8 sm:h-10 sm:w-10"
+              className="h-9 w-9 sm:h-10 sm:w-10"
               priority
             />
           </Link>
 
           <div className="min-w-0">
-            <Link
-              href="/"
-              className="block text-lg font-bold text-red-700 sm:text-2xl"
-            >
+            <Link href="/" className="block text-lg font-bold text-red-700 sm:text-2xl" >
               Bangla News 24
             </Link>
 

@@ -24,12 +24,12 @@ const Auth = () => {
           </button>
         </div>
       ) : (
-        <div>
+        <div className="flex gap-2">
           <Link href={"/sign-in"}>
-            <button className="btn btn-ghost hover:btn-ghost">সাইন ইন</button>
+            <button className="btn-sm sm:btn-md btn btn-ghost hover:btn-ghost">সাইন ইন</button>
           </Link>
           <Link href={"/sign-up"}>
-            <button className="btn btn-error bg-red-600 text-white">
+            <button className="btn-sm sm:btn-md btn btn-error bg-red-600 text-white hover:bg-red-800">
               সাইন আপ
             </button>
           </Link>
